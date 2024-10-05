@@ -1,0 +1,193 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+nav {
+  width: 200px;
+  height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.nav-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.logo-icon {
+  margin-right: 10px;
+}
+
+.logo-text {
+  color: #333;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.nav-item {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.active-nav-item {
+  background-color: #e7f1ff;
+  color: #0d6efd;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.count {
+  margin-left: auto;
+  background-color: #e9ecef;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.bottom-section {
+  margin-top: auto;
+}
+
+.settings {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.user-info {
+  font-size: 14px;
+}
+
+.view-only {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+/* Add these new styles and modify existing ones */
+
+.user-container {
+  position: relative;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.user.active {
+  box-shadow: 0 0 0 2px #007bff;
+}
+
+.user-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.user-info {
+  flex-grow: 1;
+}
+
+.user-name {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.view-only {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.logout-option {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.logout-option:hover {
+  background-color: #f0f0f0;
+}
+
+.logout-icon {
+  margin-right: 10px;
+  color: #dc3545;
+}
