@@ -20,16 +20,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-lu=mfrg5vw8wminryg7ype!yuzzr4!ao63n)+p%a37@b-tqvgl'
+SECRET_KEY = 'django-insecure-lu=mfrg5vw8wminryg7ype!yuzzr4!ao63n)+p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = ["localhost", "backend", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ['http://localhost:3000']
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
+CSRF_COOKIE_HTTPONLY = False
+CSRF_USE_SESSIONS = False
+CSRF_COOKIE_SECURE = False  # Set to True if using HTTPS
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'LabManagement.apps.LabmanagementConfig',
     'django.contrib.admin',
@@ -38,8 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    #allauth needs
+    # allauth needs
     'allauth',
     'allauth.account',
     # Optional -- requires install using `django-allauth[socialaccount]`.
@@ -47,11 +51,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.jupyterhub',
-    "allauth.mfa",
-    "allauth.headless",
-    "allauth.usersessions",
-    # for React frontend
     'corsheaders',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
     'rest_framework',
     'rest_framework.authtoken',
 ]
@@ -66,18 +68,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # Add the account middleware for allauth:
     "allauth.account.middleware.AccountMiddleware",
-    # For React frontend
     'corsheaders.middleware.CorsMiddleware',
-]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000'
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",  # Your React app's URL
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -93,8 +84,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # `allauth` needs this from django
-                'django.template.context_processors.request',
             ],
         },
     },
@@ -137,15 +126,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
-
-]
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
@@ -170,28 +150,35 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # allauth setting
 SITE_ID = 1
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_AUTHENTICATION_METHOD = "email"
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-ACCOUNT_LOGIN_BY_CODE_ENABLED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 
-
-HEADLESS_ONLY = True
-HEADLESS_FRONTEND_URLS = {
-    "account_confirm_email": "/account/verify-email/{key}",
-    "account_reset_password": "/account/password/reset",
-    "account_reset_password_from_key": "/account/password/reset/key/{key}",
-    "account_signup": "/account/signup",
-    "socialaccount_login_error": "/account/provider/callback",
+# rest-framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+    ],
+}
+# simple jwt
+from datetime import timedelta
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(hours=2),
 }
 
-MFA_SUPPORTED_TYPES = ["totp", "recovery_codes", "webauthn"]
-MFA_PASSKEY_LOGIN_ENABLED = True
-MFA_PASSKEY_SIGNUP_ENABLED = True
-ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True
+# rest auth
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'access',
+    'JWT_AUTH_REFRESH_COOKIE': 'refresh',
+    'JWT_AUTH_HTTPONLY': True,
+    'SESSION_LOGIN': False,
+    'OLD_PASSWORD_FIELD_ENABLED': True,
+}
+
 # send email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -199,3 +186,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'gyq673516081@gmail.com'
 EMAIL_HOST_PASSWORD= 'lilh hcoz hrlh pwip'
+
+
+AUTH_USER_MODEL = "LabManagement.CustomUserModel"

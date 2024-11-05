@@ -1,0 +1,80 @@
+.courses-container {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.courses-container h2 {
+    margin-bottom: 2rem;
+    color: #333;
+    border-bottom: 2px solid #f0f0f0;
+    padding: 1rem 0;
+    margin: 1 0;
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.course-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+}
+
+.course-thumbnail {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.course-content {
+    padding: 1.5rem;
+}
+
+.course-content h2 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.instructor {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.description {
+    color: #555;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.progress-container {
+    background: #f0f0f0;
+    border-radius: 10px;
+    height: 10px;
+    position: relative;
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    background: #4CAF50;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+} 

@@ -1,0 +1,145 @@
+/* Base navbar styles */
+.navbar {
+    box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.05);
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar .container-fluid {
+    height: 100vh;
+    padding: 1rem;
+}
+
+/* Add these new styles */
+.navbar .container-fluid > div:first-child {
+    flex: 1 0 auto;
+}
+
+.navbar .container-fluid > div.mt-auto {
+    flex: 0 0 auto;
+    margin-top: auto !important;
+}
+
+/* Logo section */
+.navbar-brand {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    width: 100%;
+}
+
+/* Team selector button */
+.team-selector {
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.team-selector:hover {
+    background-color: #f7fafc;
+}
+
+.team-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+/* Navigation links */
+.nav-link {
+    color: #4a5568 !important;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    margin-bottom: 4px;
+}
+
+.nav-link:hover {
+    background-color: #f7fafc;
+    transform: translateX(4px);
+}
+
+.nav-link.active {
+    background-color: #ebf8ff;
+    color: #3182ce !important;
+    font-weight: 500;
+}
+
+/* Icons in nav links */
+.nav-link svg {
+    width: 20px;
+    height: 20px;
+    opacity: 0.7;
+}
+
+.nav-link:hover svg {
+    opacity: 1;
+}
+
+/* Badge styling */
+.badge {
+    background-color: #f7fafc !important;
+    color: #4a5568 !important;
+    font-weight: 500;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+/* User profile button */
+.user-profile {
+    padding: 0.75rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.user-profile:hover {
+    background-color: #f7fafc;
+}
+
+.user-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.view-only-badge {
+    font-size: 12px;
+    color: #718096;
+}
+
+/* Logout button */
+button.nav-link {
+    cursor: pointer;
+    color: #4a5568 !important;
+}
+
+button.nav-link:hover {
+    color: #e53e3e !important;
+}
+
+button.nav-link:hover svg {
+    color: #e53e3e !important;
+}
+
+/* Header styling */
+.navbar h4 {
+    margin: 0;
+    padding: 1rem 0;
+}
+
+/* Ensure the bottom container spans the full width and aligns items correctly */
+.navbar .container-fluid > .w-100.mt-auto {
+    display: flex;
+    flex-direction: column;
+}
+
